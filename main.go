@@ -18,8 +18,8 @@ func dosth(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	driver.ConnectMongoDB()
-
 	r := mux.NewRouter()
+	r.Use(middleware.CORS)
 	login := r.PathPrefix("/login").Subrouter()
 	login.HandleFunc("/user", h.Login)
 	login.HandleFunc("/register", h.Register)
